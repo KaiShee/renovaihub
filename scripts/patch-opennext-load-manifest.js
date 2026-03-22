@@ -33,20 +33,30 @@ if (patched.includes(globFrom)) {
 const throwNeedleA = "throw new Error(`Unexpected loadManifest(${$PATH}) call!`);";
 const throwNeedleB = "throw new Error(\\`Unexpected loadManifest(\\${$PATH}) call!\\`);";
 
-if (!patched.includes("if ($$$ARGS[3]) return {};")) {
+if (!patched.includes("if (handleMissing) return {};")) {
   if (patched.includes(throwNeedleA)) {
     patched = patched.replace(
       throwNeedleA,
-      "if ($$$ARGS[3]) return {};\\n  throw new Error(`Unexpected loadManifest(${$PATH}) call!`);"
+      "if (handleMissing) return {};\\n  throw new Error(`Unexpected loadManifest(${$PATH}) call!`);"
     );
     console.log("[patch-opennext-load-manifest] patched loadManifest to honor handleMissing");
   } else if (patched.includes(throwNeedleB)) {
     patched = patched.replace(
       throwNeedleB,
-      "if ($$$ARGS[3]) return {};\\n  throw new Error(\\`Unexpected loadManifest(\\${$PATH}) call!\\`);"
+      "if (handleMissing) return {};\\n  throw new Error(\\`Unexpected loadManifest(\\${$PATH}) call!\\`);"
     );
     console.log("[patch-opennext-load-manifest] patched loadManifest to honor handleMissing");
   }
+}
+
+if (patched.includes("$$ARGS[3]")) {
+  patched = patched.split("$$ARGS[3]").join("handleMissing");
+  console.log("[patch-opennext-load-manifest] replaced legacy $$ARGS[3] token");
+}
+
+if (patched.includes("$$$ARGS[3]")) {
+  patched = patched.split("$$$ARGS[3]").join("handleMissing");
+  console.log("[patch-opennext-load-manifest] replaced legacy $$$ARGS[3] token");
 }
 
 if (patched === source) {
