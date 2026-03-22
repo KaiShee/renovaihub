@@ -35,10 +35,12 @@ export async function POST(request) {
     const resend = getResend();
     const toEmail = process.env.RESEND_TO_EMAIL || "studybuddy967@gmail.com";
     const fromEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+    const fromName = process.env.RESEND_FROM_NAME || "RenovAIHub";
     const testToEmail = process.env.RESEND_TEST_TO_EMAIL || "kaishee123@gmail.com";
     const recipient = fromEmail.endsWith("resend.dev") ? testToEmail : toEmail;
+    const sender = fromName ? `${fromName} <${fromEmail}>` : fromEmail;
     const result = await resend.emails.send({
-      from: fromEmail,
+      from: sender,
       to: recipient,
       replyTo: email,
       subject: `New Contact Form Submission from ${name}`,
