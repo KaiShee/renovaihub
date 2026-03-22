@@ -63,6 +63,11 @@ Deploy with Wrangler:
 npm run cf:deploy
 ```
 
+If using Cloudflare dashboard CI/CD settings, use:
+
+- Build command: `npm run cf:build`
+- Deploy command: `npx wrangler deploy`
+
 For deployed Worker environments, add secrets using Wrangler:
 
 ```bash
