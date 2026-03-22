@@ -20,6 +20,8 @@ ESTIMATOR_RUSH_PREMIUM = "1.18"
 ESTIMATOR_LOW_RANGE_FACTOR = "0.88"
 ESTIMATOR_HIGH_RANGE_FACTOR = "1.16"
 RESEND_API_KEY = "re_gMne1Udp_74ENzv8zFsAe2VaY86sKMHfB"
+RESEND_TO_EMAIL = "studybuddy967@gmail.com"
+RESEND_FROM_EMAIL = "onboarding@resend.dev"
 
 [observability.logs]
 enabled = true

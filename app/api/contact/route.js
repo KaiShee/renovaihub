@@ -10,6 +10,15 @@ function getResend() {
   return new Resend(apiKey);
 }
 
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
 export async function POST(request) {
   try {
     const payload = await request.json();
@@ -24,23 +33,26 @@ export async function POST(request) {
 
     // Send email to your Gmail
     const resend = getResend();
+    const toEmail = process.env.RESEND_TO_EMAIL || "studybuddy967@gmail.com";
+    const fromEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
     const result = await resend.emails.send({
-      from: "noreply@renovaihub.com",
-      to: "studybuddy967@gmail.com",
+      from: fromEmail,
+      to: toEmail,
+      replyTo: email,
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
         <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, "<br>")}</p>
+        <p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>
       `,
     });
 
     if (result.error) {
       console.error("Resend error:", result.error);
       return NextResponse.json(
-        { error: "Failed to send email. Please try again." },
+        { error: "Failed to send email. Please try again in a moment." },
         { status: 500 }
       );
     }
@@ -53,6 +65,9 @@ export async function POST(request) {
     );
   } catch (error) {
     console.error("Contact form error:", error);
-    return NextResponse.json({ error: "Invalid request payload." }, { status: 400 });
+    return NextResponse.json(
+      { error: "Message could not be sent right now. Please try again shortly." },
+      { status: 500 }
+    );
   }
 }
