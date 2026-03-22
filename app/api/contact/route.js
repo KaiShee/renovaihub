@@ -35,9 +35,11 @@ export async function POST(request) {
     const resend = getResend();
     const toEmail = process.env.RESEND_TO_EMAIL || "studybuddy967@gmail.com";
     const fromEmail = process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+    const testToEmail = process.env.RESEND_TEST_TO_EMAIL || "kaishee123@gmail.com";
+    const recipient = fromEmail.endsWith("resend.dev") ? testToEmail : toEmail;
     const result = await resend.emails.send({
       from: fromEmail,
-      to: toEmail,
+      to: recipient,
       replyTo: email,
       subject: `New Contact Form Submission from ${name}`,
       html: `
@@ -51,6 +53,20 @@ export async function POST(request) {
 
     if (result.error) {
       console.error("Resend error:", result.error);
+
+      if (
+        result.error.statusCode === 403 &&
+        String(result.error.message || "").toLowerCase().includes("testing domain restriction")
+      ) {
+        return NextResponse.json(
+          {
+            error:
+              "Resend testing domain can only send to your own account email. Verify your domain in Resend to send to other recipients.",
+          },
+          { status: 403 }
+        );
+      }
+
       return NextResponse.json(
         { error: "Failed to send email. Please try again in a moment." },
         { status: 500 }

@@ -72,85 +72,41 @@ export default function HomePage() {
   };
 
   return (
-    <main className="page-shell home-page">
+    <main className="page-shell">
       <div className="mesh" aria-hidden="true" />
-      <section className="home-hero">
-        <div className="home-hero-copy">
-          <p className="kicker">RenovAIHub</p>
-          <h1>Build with confident planning, then execute with worker precision.</h1>
-          <p className="lede">
-            A high-trust renovation platform for scope, timeline and budget control.
-            Show clients every step clearly and move from estimate to execution faster.
-          </p>
-          <div className="home-cta-row">
-            <Link href="/projects" className="home-btn home-btn-primary">
-              Explore Project Flow
-            </Link>
-            <Link href="/contact" className="home-btn home-btn-ghost">
-              Start A Conversation
-            </Link>
-          </div>
-          <div className="hero-stat-row" aria-label="Platform highlights">
-            <article className="hero-stat">
-              <span>Lead Time</span>
-              <strong>-22%</strong>
-            </article>
-            <article className="hero-stat">
-              <span>Budget Visibility</span>
-              <strong>Real-time</strong>
-            </article>
-            <article className="hero-stat">
-              <span>Process Steps</span>
-              <strong>4 Stages</strong>
-            </article>
-          </div>
-        </div>
-
-        <div className="worker-stage" aria-hidden="true">
-          <div className="worker-grid">
-            <span className="cube c1" />
-            <span className="cube c2" />
-            <span className="cube c3" />
-            <span className="cube c4" />
-            <span className="cube c5" />
-            <span className="cube c6" />
-            <span className="cube c7" />
-            <span className="cube c8" />
-            <span className="cube c9" />
-          </div>
-
-          <div className="worker worker-a">
-            <span className="worker-helmet" />
-            <span className="worker-head" />
-            <span className="worker-body" />
-          </div>
-
-          <div className="worker worker-b">
-            <span className="worker-helmet" />
-            <span className="worker-head" />
-            <span className="worker-body" />
-          </div>
-
-          <span className="light-beam" />
+      <section className="hero">
+        <p className="kicker">RenovAIHub</p>
+        <h1>Renovation planning that actually feels in control.</h1>
+        <p className="lede">
+          Launch-ready web platform with a striking frontend and a backend API to qualify
+          leads and generate instant estimate ranges.
+        </p>
+        <div className="cta-row">
+          <Link href="/services" className="btn-primary">
+            View Services
+          </Link>
+          <Link href="/projects" className="btn-ghost">
+            See Projects
+          </Link>
         </div>
       </section>
 
-      <section className="content-grid home-pillars">
-        <article className="panel home-panel">
+      <section className="content-grid">
+        <article className="panel">
           <h3>Scope Intelligence</h3>
           <p>
             We break large renovation goals into practical, staged execution scopes so teams
             can approve faster.
           </p>
         </article>
-        <article className="panel home-panel">
+        <article className="panel">
           <h3>Budget Signal Engine</h3>
           <p>
             Get informed budget ranges and timeline pressure warnings before committing to
             contractor schedules.
           </p>
         </article>
-        <article className="panel home-panel">
+        <article className="panel">
           <h3>Weekly Execution Rhythm</h3>
           <p>
             Keep stakeholders aligned through clear milestones, procurement checkpoints, and
@@ -159,7 +115,7 @@ export default function HomePage() {
         </article>
       </section>
 
-      <section className="panel estimator-panel">
+      <section className="panel">
         <h2>Project Estimator</h2>
         <form onSubmit={onSubmit} className="estimator-form">
           <label>
