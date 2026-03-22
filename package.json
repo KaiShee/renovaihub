@@ -13,7 +13,8 @@
   "dependencies": {
     "next": "16.2.1",
     "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "react-dom": "19.1.0",
+    "resend": "^6.9.4"
   },
   "devDependencies": {
     "@opennextjs/cloudflare": "^1.17.1",
