@@ -21,8 +21,7 @@ ESTIMATOR_LOW_RANGE_FACTOR = "0.88"
 ESTIMATOR_HIGH_RANGE_FACTOR = "1.16"
 RESEND_API_KEY = "re_gMne1Udp_74ENzv8zFsAe2VaY86sKMHfB"
 RESEND_TO_EMAIL = "studybuddy967@gmail.com"
-RESEND_FROM_EMAIL = "onboarding@resend.dev"
-RESEND_TEST_TO_EMAIL = "kaishee123@gmail.com"
+RESEND_FROM_EMAIL = "hello@renovaihub.com"
 
 [observability.logs]
 enabled = true
