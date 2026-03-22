@@ -3,4 +3,6 @@ import { defineCloudflareConfig } from "@opennextjs/cloudflare/config";
 
 export default defineCloudflareConfig({
 	incrementalCache: false,
+	warningOnUnstableAPI: false,
+	precompressStaticAssets: true,
 });

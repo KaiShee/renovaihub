@@ -1,6 +1,6 @@
 import "./globals.css";
-import SiteFooter from "./components/site-footer";
-import SiteHeader from "./components/site-header";
+import SiteFooter from "./components/site-footer.js";
+import SiteHeader from "./components/site-header.js";
 
 export const metadata = {
   title: "RenovAIHub | Renovation Planning Platform",
