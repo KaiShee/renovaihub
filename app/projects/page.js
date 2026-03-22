@@ -1,3 +1,5 @@
+import ProcessTimeline from "../components/process-timeline";
+
 const projects = [
   {
     name: "Harbor Kitchen Modernization",
@@ -41,6 +43,23 @@ export default function ProjectsPage() {
             <p>{project.outcome}</p>
           </article>
         ))}
+      </section>
+
+      <ProcessTimeline />
+
+      <section className="cta-section">
+        <div className="site-container cta-content">
+          <h2>Ready to Start Your Project?</h2>
+          <p>Contact us today for a free consultation and quote. Let's bring your vision to life!</p>
+          <div className="cta-buttons">
+            <a href="https://wa.me/60131228278" className="btn btn-primary" target="_blank" rel="noopener noreferrer">
+              Chat on WhatsApp
+            </a>
+            <a href="/contact" className="btn btn-secondary">
+              Get a Quote
+            </a>
+          </div>
+        </div>
       </section>
     </main>
   );
