@@ -41,9 +41,29 @@ Optional:
 
 ## Cloudflare Workers Setup
 
-For local Worker development, place values in `.dev.vars`.
+This repository includes `wrangler.toml` and OpenNext scripts so Cloudflare can run the
+Next.js frontend and backend API route on Workers.
 
-For deployed Worker environments, add variables using Wrangler:
+Install and test Worker build locally:
+
+```bash
+npm install
+npm run cf:build
+```
+
+Preview locally with Worker runtime:
+
+```bash
+npm run cf:preview
+```
+
+Deploy with Wrangler:
+
+```bash
+npm run cf:deploy
+```
+
+For deployed Worker environments, add secrets using Wrangler:
 
 ```bash
 wrangler secret put JWT_SECRET
@@ -51,6 +71,12 @@ wrangler secret put DATABASE_URL
 ```
 
 For non-secret values, define them in `wrangler.toml` under `vars`.
+
+### Why your site showed README instead of the app
+
+If Cloudflare is set as a static Pages deployment (publishing repository files), it may
+render `README.md` as the homepage. Switching to the Worker deployment flow above builds
+and serves the actual Next.js application.
 
 ## API
 
