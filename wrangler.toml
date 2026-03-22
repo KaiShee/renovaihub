@@ -19,3 +19,18 @@ ESTIMATOR_RUSH_MONTH_THRESHOLD = "4"
 ESTIMATOR_RUSH_PREMIUM = "1.18"
 ESTIMATOR_LOW_RANGE_FACTOR = "0.88"
 ESTIMATOR_HIGH_RANGE_FACTOR = "1.16"
+
+[observability]
+enabled = false
+head_sampling_rate = 1
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+persist = true
+invocation_logs = true
+
+[observability.traces]
+enabled = false
+persist = true
+head_sampling_rate = 1
