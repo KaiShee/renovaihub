@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 const projectTypes = [
@@ -80,6 +81,38 @@ export default function HomePage() {
           Launch-ready web platform with a striking frontend and a backend API to qualify
           leads and generate instant estimate ranges.
         </p>
+        <div className="cta-row">
+          <Link href="/services" className="btn-primary">
+            View Services
+          </Link>
+          <Link href="/projects" className="btn-ghost">
+            See Projects
+          </Link>
+        </div>
+      </section>
+
+      <section className="content-grid">
+        <article className="panel">
+          <h3>Scope Intelligence</h3>
+          <p>
+            We break large renovation goals into practical, staged execution scopes so teams
+            can approve faster.
+          </p>
+        </article>
+        <article className="panel">
+          <h3>Budget Signal Engine</h3>
+          <p>
+            Get informed budget ranges and timeline pressure warnings before committing to
+            contractor schedules.
+          </p>
+        </article>
+        <article className="panel">
+          <h3>Weekly Execution Rhythm</h3>
+          <p>
+            Keep stakeholders aligned through clear milestones, procurement checkpoints, and
+            progress narratives.
+          </p>
+        </article>
       </section>
 
       <section className="panel">
