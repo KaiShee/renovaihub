@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const navItems = [
@@ -13,7 +14,15 @@ export default function SiteHeader() {
     <header className="site-header">
       <div className="site-container nav-wrap">
         <Link href="/" className="brand-link">
-          RenovAIHub
+          <Image
+            src="/images/Logo.jpeg"
+            alt="RenovAIHub logo"
+            width={36}
+            height={36}
+            className="brand-logo"
+            priority
+          />
+          <span>RenovAIHub</span>
         </Link>
         <nav className="main-nav" aria-label="Main navigation">
           {navItems.map((item) => (
