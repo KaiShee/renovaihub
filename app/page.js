@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState } from "react";
 
@@ -9,6 +10,33 @@ const projectTypes = [
   "Full Home",
   "Exterior",
   "Commercial",
+];
+
+const processStages = [
+  {
+    title: "Initial Consultation",
+    description:
+      "We visit your site, understand your priorities, and align scope, budget, and timeline from day one.",
+    image: "/images/Stage1.jpeg",
+  },
+  {
+    title: "Proposal & Planning",
+    description:
+      "You receive a clear proposal with scope options, pricing visibility, and practical execution sequencing.",
+    image: "/images/Stage2.jpeg",
+  },
+  {
+    title: "Execution & Coordination",
+    description:
+      "Our team coordinates trades, materials, and milestones so progress stays controlled and transparent.",
+    image: "/images/Stage3.jpeg",
+  },
+  {
+    title: "Completion & Handover",
+    description:
+      "Final checks, quality touch-ups, and handover with confidence that every detail is complete.",
+    image: "/images/Stage4.jpeg",
+  },
 ];
 
 export default function HomePage() {
@@ -74,45 +102,73 @@ export default function HomePage() {
   return (
     <main className="page-shell">
       <div className="mesh" aria-hidden="true" />
-      <section className="hero">
-        <p className="kicker">RenovAIHub</p>
-        <h1>Renovation planning that actually feels in control.</h1>
-        <p className="lede">
-          Launch-ready web platform with a striking frontend and a backend API to qualify
-          leads and generate instant estimate ranges.
-        </p>
-        <div className="cta-row">
-          <Link href="/services" className="btn-primary">
-            View Services
-          </Link>
-          <Link href="/projects" className="btn-ghost">
-            See Projects
-          </Link>
+
+      <section className="panel home-hero-panel">
+        <div className="home-hero-wrap">
+          <div className="hero-copy">
+            <p className="kicker">RenovAIHub</p>
+            <h1>Plan smart. Build confidently. Deliver on time.</h1>
+            <p className="lede">
+              A modern renovation workflow that helps clients understand each stage before
+              work starts, from consultation to handover.
+            </p>
+            <div className="cta-row">
+              <Link href="/projects" className="btn-primary">
+                See Project Process
+              </Link>
+              <Link href="/contact" className="btn-ghost">
+                Talk to Our Team
+              </Link>
+            </div>
+          </div>
+
+          <div className="logo-stage">
+            <Image
+              src="/images/Logo.jpeg"
+              alt="RenovAIHub brand logo"
+              width={360}
+              height={360}
+              className="hero-logo"
+              priority
+            />
+            <p className="logo-tag">Trusted Renovation Planning Partner</p>
+          </div>
         </div>
       </section>
 
-      <section className="content-grid">
-        <article className="panel">
-          <h3>Scope Intelligence</h3>
+      <section className="panel home-process-panel">
+        <div className="home-process-head">
+          <p className="kicker">Our Process</p>
+          <h2>Four clear steps your renovation will go through</h2>
           <p>
-            We break large renovation goals into practical, staged execution scopes so teams
-            can approve faster.
+            Show clients exactly what happens at each stage, so expectations are aligned and
+            delivery is smoother.
           </p>
-        </article>
-        <article className="panel">
-          <h3>Budget Signal Engine</h3>
-          <p>
-            Get informed budget ranges and timeline pressure warnings before committing to
-            contractor schedules.
-          </p>
-        </article>
-        <article className="panel">
-          <h3>Weekly Execution Rhythm</h3>
-          <p>
-            Keep stakeholders aligned through clear milestones, procurement checkpoints, and
-            progress narratives.
-          </p>
-        </article>
+        </div>
+
+        <div className="process-showcase">
+          {processStages.map((stage, index) => (
+            <article
+              key={stage.title}
+              className={`process-showcase-card ${index % 2 === 1 ? "reverse" : ""}`}
+            >
+              <div className="process-showcase-image">
+                <Image
+                  src={stage.image}
+                  alt={stage.title}
+                  width={720}
+                  height={480}
+                  className="stage-image"
+                />
+              </div>
+              <div className="process-showcase-copy">
+                <p className="process-step-label">Step {String(index + 1).padStart(2, "0")}</p>
+                <h3>{stage.title}</h3>
+                <p>{stage.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="panel">
