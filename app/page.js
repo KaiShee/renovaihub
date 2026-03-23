@@ -100,78 +100,98 @@ export default function HomePage() {
   };
 
   return (
-    <main className="page-shell">
-      <div className="mesh" aria-hidden="true" />
-
-      <section className="panel home-hero-panel">
-        <div className="home-hero-wrap">
-          <div className="hero-copy">
-            <p className="kicker">RenovAIHub</p>
-            <h1>Plan smart. Build confidently. Deliver on time.</h1>
-            <p className="lede">
-              A modern renovation workflow that helps clients understand each stage before
-              work starts, from consultation to handover.
-            </p>
-            <div className="cta-row">
-              <Link href="/projects" className="btn-primary">
-                See Project Process
-              </Link>
-              <Link href="/contact" className="btn-ghost">
-                Talk to Our Team
-              </Link>
-            </div>
-          </div>
-
-          <div className="logo-stage">
-            <Image
-              src="/images/Logo.jpeg"
-              alt="RenovAIHub brand logo"
-              width={360}
-              height={360}
-              className="hero-logo"
-              priority
-            />
-            <p className="logo-tag">Trusted Renovation Planning Partner</p>
+    <main className="page-shell home-layout">
+      <section className="home-hero-banner full-bleed">
+        <Image
+          src="/images/Stage2.jpeg"
+          alt="Construction and renovation background"
+          fill
+          priority
+          className="hero-banner-image"
+        />
+        <div className="hero-banner-overlay" />
+        <div className="hero-banner-inner site-container">
+          <p className="hero-label">RenovAIHub</p>
+          <h1>Reliable. Affordable. Trusted renovation partner.</h1>
+          <p>
+            Seamless end-to-end renovation delivery with transparent process, controlled
+            timeline and quality handover.
+          </p>
+          <div className="hero-actions">
+            <Link href="/projects" className="hero-btn primary">
+              View Projects
+            </Link>
+            <Link href="/contact" className="hero-btn ghost">
+              Get A Quote
+            </Link>
           </div>
         </div>
       </section>
 
-      <section className="panel home-process-panel">
-        <div className="home-process-head">
-          <p className="kicker">Our Process</p>
-          <h2>Four clear steps your renovation will go through</h2>
+      <section className="home-intro-section">
+        <div className="intro-copy-block">
+          <p className="kicker">Into Renovation</p>
+          <h2>Built for clear client communication from day one</h2>
           <p>
-            Show clients exactly what happens at each stage, so expectations are aligned and
-            delivery is smoother.
+            Our team works closely with clients from consultation to completion, prioritizing
+            safety, efficiency and practical planning at every stage.
+          </p>
+          <Link href="/contact" className="btn-primary">
+            Start Free Consultation
+          </Link>
+        </div>
+        <div className="intro-logo-block">
+          <Image
+            src="/images/Logo.jpeg"
+            alt="RenovAIHub logo"
+            width={520}
+            height={520}
+            className="intro-logo"
+          />
+        </div>
+      </section>
+
+      <section className="home-process-strip">
+        <div className="home-process-headline">
+          <h2>Project Stages</h2>
+          <p>
+            A systematic 4-stage approach to keep every renovation smooth, accountable and
+            client-friendly.
           </p>
         </div>
-
-        <div className="process-showcase">
+        <div className="home-process-grid">
           {processStages.map((stage, index) => (
-            <article
-              key={stage.title}
-              className={`process-showcase-card ${index % 2 === 1 ? "reverse" : ""}`}
-            >
-              <div className="process-showcase-image">
-                <Image
-                  src={stage.image}
-                  alt={stage.title}
-                  width={720}
-                  height={480}
-                  className="stage-image"
-                />
-              </div>
-              <div className="process-showcase-copy">
-                <p className="process-step-label">Step {String(index + 1).padStart(2, "0")}</p>
-                <h3>{stage.title}</h3>
-                <p>{stage.description}</p>
-              </div>
+            <article key={stage.title} className="home-process-item">
+              <span className="process-badge">{String(index + 1).padStart(2, "0")}</span>
+              <h3>{stage.title}</h3>
+              <p>{stage.description}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="panel">
+      <section className="home-gallery-section">
+        {processStages.map((stage, index) => (
+          <article key={`${stage.title}-image`} className="gallery-row">
+            <div className="gallery-image-wrap">
+              <Image
+                src={stage.image}
+                alt={`${stage.title} visual`}
+                width={960}
+                height={620}
+                className="gallery-image"
+              />
+            </div>
+            <div className="gallery-copy-wrap">
+              <p className="kicker">Step {String(index + 1).padStart(2, "0")}</p>
+              <h3>{stage.title}</h3>
+              <p>{stage.description}</p>
+            </div>
+          </article>
+        ))}
+      </section>
+
+      <section className="panel home-estimator-panel">
         <h2>Project Estimator</h2>
         <form onSubmit={onSubmit} className="estimator-form">
           <label>
@@ -254,6 +274,21 @@ export default function HomePage() {
             </ol>
           </article>
         ) : null}
+      </section>
+
+      <section className="home-cta-band full-bleed">
+        <div className="site-container cta-band-inner">
+          <h2>Ready to Start Your Project?</h2>
+          <p>Contact us for a free consultation and let&apos;s plan your renovation properly.</p>
+          <div className="cta-row">
+            <Link href="/contact" className="btn-primary">
+              Get A Quote
+            </Link>
+            <a href="https://wa.me/601131228278" className="btn-ghost" target="_blank" rel="noreferrer">
+              WhatsApp Us
+            </a>
+          </div>
+        </div>
       </section>
     </main>
   );
